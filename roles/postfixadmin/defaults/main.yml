@@ -1,0 +1,12 @@
+---
+# defaults for mailserver role
+
+postfixadmin_path: /var/www/postfixadmin
+postfixadmin_vhost: "mailadmin.{{ domain }}"
+postfixadmin_setup_password: "{{ lookup('password', secret + '/' + 'postfixadmin_setup_password', length=32) }}"
+postfixadmin_setup_salt: "{{ 999999999999999999998 | random | hash('md5') }}"
+db_hostname: localhost
+mailadmin_server_hostname: "postfixadmin_vhost"
+
+# set these up in the vault, or uncomment and set here
+# postfixadmin_setup_password: CHANGEME
