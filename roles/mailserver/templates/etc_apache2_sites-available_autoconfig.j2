@@ -9,10 +9,7 @@
 
     ServerName {{ mail_server_autoconfig_hostname }}
 
-    DocumentRoot            "/var/www/autoconfig"
-    Options                 -Indexes
-
-    HostnameLookups         Off
+    Redirect permanent / https://{{ mail_server_autoconfig_hostname }}/
 </VirtualHost>
 
 <VirtualHost *:443>

@@ -1,4 +1,16 @@
 ---
+- name: Add PHP apt-key
+  apt_key:
+    url: https://packages.sury.org/php/apt.gpg
+    state: present
+
+- name: Add PHP apt repository
+  apt_repository:
+    repo: 'deb https://packages.sury.org/php/ stretch main'
+    state: present
+    filename: php
+    update_cache: no
+
 - name: Update apt cache
   apt: update_cache=yes
   tags:

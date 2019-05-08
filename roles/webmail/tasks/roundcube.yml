@@ -5,15 +5,17 @@
 - name: Install roundcube dependencies
   apt: pkg={{ item }} state=present
   with_items:
-    - php5
-    - php5-sqlite
-    - php5-mcrypt
-    - php5-gd
-    - php5-pspell
-    - php5-intl
-    - php5-curl
+    - php5.6
+    - php5.6-sqlite3
+    - php5.6-mcrypt
+    - php5.6-gd
+    - php5.6-pspell
+    - php5.6-intl
+    - php5.6-curl
     - aspell
     - aspell-en
+    - php5.6-xml
+    - php5.6-mbstring
   tags:
     - dependencies
 
@@ -43,6 +45,8 @@
   command: php /root/composer.phar install --no-dev
            chdir=/var/www/roundcube
            creates=/var/www/roundcube/vendor/autoload.php
+  environment:
+    COMPOSER_ALLOW_SUPERUSER: "1"
 
 - name: Remove installer directory
   file: path=/var/www/roundcube/installer state=absent
@@ -98,3 +102,11 @@
 - name: Enable Roundcube site
   command: a2ensite roundcube.conf creates=/etc/apache2/sites-enabled/roundcube.conf
   notify: restart apache
+
+- name: Create symlink for php and apache2
+  file: src=/etc/apache2/mods-available/php5.6.conf  dest=/etc/apache2/mods-enabled/php5.6.conf
+  state: link
+
+- name: Create symlink for php and apache2
+  file: src=/etc/apache2/mods-available/php5.6.load  dest=/etc/apache2/mods-enabled/php5.6.load
+  state: link
