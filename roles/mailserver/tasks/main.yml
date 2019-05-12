@@ -2,10 +2,10 @@
   tags: postfix
 - include: dovecot.yml
   tags: dovecot
-- include: rspamd.yml
-  tags: rspamd
-- include: solr.yml
-  tags: solr
+- include: opendkim.yml
+  tags: opendkim
+- include: dmarc.yml
+  tags: dmarc
 - include: checkrbl.yml
   tags: checkrbl
 - include: z-push.yml
@@ -13,3 +13,7 @@
 - include: autoconfig.yml
   tags: autoconfig
 
+- include: local.yml
+  tags:
+    - mailserver_local
+    - local

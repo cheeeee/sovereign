@@ -1,0 +1,14 @@
+---
+# user-specific mods
+
+- name: determine what domains we have configured
+  shell: ls -l /decrypted | grep vmail | awk '{ print $NF }'
+  register: domain_list
+  changed_when: False
+  tags:
+    - dspam
+
+- name: install cron job to delete spam older than 30 days
+  cron: name="delete spam older than 30 days" hour="0" minute="0" job="find /decrypted -type d -name .Spam -o -name .Junk | while read x; do find $x -type f -daystart -mtime +30 -delete; done"
+  tags:
+    - cron

@@ -38,7 +38,7 @@
     - /var/log/z-push
   notify: restart apache
 
-- name: Copy z-push's config.php into place
+- name: Copy z-pushs config.php into place
   template: src=usr_share_z-push_config.php.j2 dest=/usr/share/z-push/config.php
 
 - name: Create z-push apache alias and php configuration file

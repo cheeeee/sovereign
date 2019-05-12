@@ -24,5 +24,5 @@
   shell: command="printf '{{ encfs_password }}' | encfs /encrypted /decrypted --public --stdinpass" creates="/decrypted/test"
   when: encfs_check.rc == 0
 
-- name: Set decrypted directory permissions
-  file: state=directory path=/decrypted group=mail mode=0775
+#- name: Set decrypted directory permissions
+#  file: state=directory path=/decrypted owner=vmail group=vmail mode=0775 recurse=yes

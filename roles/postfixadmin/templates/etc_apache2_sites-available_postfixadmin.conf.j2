@@ -8,7 +8,7 @@
     ServerName {{ postfixadmin_vhost }}
     SSLEngine On
 
-    DocumentRoot {{ postfixadmin_path }}
+    DocumentRoot {{ postfixadmin_path }}/public
 
     <Directory {{ postfixadmin_path }}/>
       Options +FollowSymLinks

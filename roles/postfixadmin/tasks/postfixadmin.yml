@@ -14,6 +14,14 @@
     group: www-data
     owner: www-data
 
+- name: Create target path
+  file:
+    dest: "{{ postfixadmin_path }}/templates_c"
+    state: directory
+    recurse: yes
+    group: www-data
+    owner: www-data
+
 - name: Extract postfixadmin
   shell: tar -C {{ postfixadmin_path }} --strip-components=1 -xvf /tmp/postfixadmin-latest.tar.gz
   args:
